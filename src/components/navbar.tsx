@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Shield } from 'lucide-react';
+import { Shield, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +38,30 @@ const Navbar: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <button className="hidden md:flex items-center justify-center rounded-lg h-10 px-6 bg-primary hover:bg-red-700 transition-colors text-white text-sm font-bold shadow-[0_0_15px_rgba(212,17,17,0.4)]">
-              <span className="truncate">הצטרף לצוות</span>
-            </button>
+            <Button
+              className="hidden md:flex shadow-[0_0_15px_rgba(212,17,17,0.4)]"
+            >
+              הצטרף לצוות
+            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden text-white"
+                >
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">תפריט</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-background-dark border-white/10">
+                <div className="flex flex-col gap-4 mt-8">
+                  <Button className="w-full">
+                    הצטרף לצוות
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </header>
       </div>

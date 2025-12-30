@@ -1,5 +1,7 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const articles = [
   {
@@ -25,15 +27,18 @@ const BlogSection: React.FC = () => {
       <div className="max-w-[1200px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
           <h2 className="text-white text-3xl md:text-4xl font-bold">ידע זה כוח</h2>
-          <button className="hidden md:flex items-center gap-2 text-primary hover:text-white transition-colors font-bold group">
+          <Button
+            variant="ghost"
+            className="hidden md:flex text-primary hover:text-white font-bold group"
+          >
             <span>לכל המאמרים באתר הראשי</span>
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          </button>
+          </Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article, index) => (
-            <div key={index} className="bg-card-dark rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-shadow duration-300 flex flex-col h-full border border-white/5 group">
+            <Card key={index} className="bg-card-dark border-white/5 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-shadow duration-300 flex flex-col h-full group">
               <div 
                 className="h-48 bg-cover bg-center relative" 
                 style={{ backgroundImage: `url("${article.image}")` }}
@@ -41,7 +46,7 @@ const BlogSection: React.FC = () => {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300"></div>
               </div>
               
-              <div className="p-6 flex flex-col flex-1 gap-4">
+              <CardContent className="p-6 flex flex-col flex-1 gap-4">
                 <div className="flex-1">
                   <h3 className="text-white text-xl font-bold leading-tight mb-2 group-hover:text-primary transition-colors duration-300">
                     {article.title}
@@ -51,18 +56,27 @@ const BlogSection: React.FC = () => {
                   </p>
                 </div>
                 
-                <a href="#" className="text-white text-sm font-bold flex items-center gap-1 mt-auto hover:underline decoration-primary underline-offset-4 group/link">
-                  קרא עוד
-                  <ArrowLeft className="w-4 h-4 group-hover/link:-translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
+                <Button
+                  variant="link"
+                  asChild
+                  className="text-white text-sm font-bold justify-start p-0 h-auto hover:underline decoration-primary underline-offset-4 group/link"
+                >
+                  <a href="#">
+                    קרא עוד
+                    <ArrowLeft className="w-4 h-4 group-hover/link:-translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
         
-        <button className="md:hidden w-full mt-8 py-3 rounded-lg border border-white/10 text-white font-bold text-sm bg-card-dark hover:bg-white/5 transition-colors">
+        <Button
+          variant="outline"
+          className="md:hidden w-full mt-8 border-white/10 text-white font-bold text-sm bg-card-dark hover:bg-white/5"
+        >
           לכל המאמרים
-        </button>
+        </Button>
       </div>
     </section>
   );

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 
 const testimonials = [
   {
@@ -39,23 +42,31 @@ const Testimonials: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((item, index) => (
-            <div key={index} className="bg-card-dark p-8 rounded-2xl border border-white/5 relative group hover:-translate-y-1 transition-transform duration-300">
-              <div className="absolute -top-4 right-8 bg-primary text-white p-2 rounded-lg shadow-lg shadow-primary/20">
-                <Quote size={20} fill="currentColor" />
+            <Card key={index} className="bg-card-dark border-white/5 relative group hover:-translate-y-1 transition-transform duration-300">
+              <div className="absolute -top-4 right-8 z-10">
+                <Badge className="bg-primary text-white p-2 shadow-lg shadow-primary/20">
+                  <Quote size={20} fill="currentColor" />
+                </Badge>
               </div>
-              <p className="text-gray-300 mb-6 text-lg font-medium leading-relaxed min-h-[140px]">
-                "{item.text}"
-              </p>
-              <div className="flex items-center gap-4 border-t border-white/5 pt-4">
-                <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-lg border-2 border-primary/50">
-                  {item.initial}
+              <CardContent className="p-8">
+                <p className="text-gray-300 mb-6 text-lg font-medium leading-relaxed min-h-[140px]">
+                  "{item.text}"
+                </p>
+                <div className="flex items-center gap-4 border-t border-white/5 pt-4">
+                  <Avatar className="w-12 h-12 border-2 border-primary/50">
+                    <AvatarFallback className="bg-gray-700 text-white font-bold text-lg">
+                      {item.initial}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="text-white font-bold">{item.name}</div>
+                    <Badge variant="outline" className="text-primary border-primary/50 bg-transparent text-sm font-bold mt-1">
+                      {item.role}
+                    </Badge>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-white font-bold">{item.name}</div>
-                  <div className="text-primary text-sm font-bold">{item.role}</div>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
